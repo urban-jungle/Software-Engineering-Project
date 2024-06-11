@@ -1,0 +1,92 @@
+.upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    background-color: #f8e8dc;
+    overflow: hidden;
+  }
+  
+  .upload-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 700px;
+    background-color: white;
+  }
+  
+  .upload-picture {
+    width: 700px;
+    height: 200px;
+    border: 1px solid black;
+  }
+  
+  .upload-container .media-preview-image {
+    max-width: 476px;
+    max-height: 318px;
+    width: auto;
+    height: auto;
+  }
+  
+  .upload-hashtag {
+    width: 100px;
+    height: 50px;
+    border: 1px solid black;
+    margin-top: 20px;
+  }
+  
+  .upload-text {
+    width: 700px;
+    height: 200px;
+    border: 1px solid black;
+    margin-top: 20px;
+    resize: none;
+  }
+  
+  .upload-button {
+    margin-top: 20px;
+    font-size: 35px;
+    cursor: pointer;
+    width: 250px;
+    height: 70px;
+    background-color: #ff8b36;
+    border: none;
+    border-radius: 20px;
+    gap: 10px;
+  }
+  
+  .delete-button {
+    display: block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .delete-button:hover {
+    background-color: darkred;
+  }
+  
+  .hashtag-input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .hashtag-buttons-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .hashtag-button {
+    background-color: #ff8b36;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-left: 10px;
+  }

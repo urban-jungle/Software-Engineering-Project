@@ -1,0 +1,158 @@
+@import url("https://fonts.googleapis.com/css2?family=Medula+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@500&display=swap"); /* Noto Sans font 가져옴 */
+
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background: #f0f2f5;
+  overflow: hidden;
+}
+
+.main-bar {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.main-logo-text {
+  display: flex;
+  height: 80px;
+  font-family: "Medula One";
+  font-size: 40px;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.main-logo-text img {
+  height: 40px; /* 이미지 높이 조절 */
+  margin-right: 10px; /* 텍스트와 이미지 간격 조절 */
+}
+
+.button-style {
+  text-decoration: none; /* 밑줄 제거 */
+}
+
+.main-logo {
+  color: #000;
+}
+
+.main-logo-black {
+  color: #000;
+}
+
+.main-right-bar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 20px;
+  margin-right: 20px;
+}
+
+.main-username {
+  display: flex;
+  align-items: center;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 20px;
+}
+
+.main-username img {
+  height: 30px; /* 이미지 높이 조절 */
+  margin-right: 10px; /* 텍스트와 이미지 간격 조절 */
+}
+
+.main-Logout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #213e57;
+  cursor: pointer;
+  background: #fff;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 16px;
+}
+
+.main-display {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  margin-top: 20px;
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.main-post {
+  text-align: center;
+}
+
+.main-user {
+  font-family: "Noto Sans", sans-serif; /* 폰트 서체 */
+  font-size: 30px;
+  text-align: center;
+}
+
+.main-guest {
+  font-family: "Noto Sans", sans-serif; /* 폰트 서체 */
+  font-size: 30px;
+  text-align: center;
+}
+
+.main-search {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.main-search-text {
+  width: 480px;
+  height: 60px;
+  font-size: 25px;
+  background-color: #f8e8dc;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.search-keyword-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.search-keyword-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.main-user-content {
+  width: 575px;
+  height: 73px;
+  font-size: 25px;
+  font-family: "Noto Sans", sans-serif;
+  border: 1px solid black;
+  margin-bottom: 20px;
+}
