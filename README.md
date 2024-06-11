@@ -2,7 +2,7 @@
 
 
 
-## 🪐 프로젝트 제목 : My Diary 제작 프로젝트
+## 🪐 프로젝트 제목 : My Diary Web Site 제작 프로젝트
 
 
 
