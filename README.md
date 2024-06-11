@@ -1,5 +1,4 @@
-# Software Engineering Project
-# Dongguk University
+# Software Engineering Project - Dongguk University
 
 
 
