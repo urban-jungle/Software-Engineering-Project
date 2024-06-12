@@ -7,7 +7,6 @@ import profileImage from "../icons/profile_img.png";
 export default function Guest() {
   const [userlist, setUserList] = useState([]);
 
-  // UserList 핸들링
   const handleUserList = async () => {
     try {
       const response = await fetch("http://localhost:5000/userlists", {
@@ -15,7 +14,7 @@ export default function Guest() {
       });
       if (response.ok) {
         const data = await response.json();
-        setUserList(data.userlist); // 서버로부터 data를 받아옴
+        setUserList(data.userlist);
       } else {
         console.error("Failed to fetch user:", response.statusText);
       }
@@ -24,12 +23,10 @@ export default function Guest() {
     }
   };
 
-  // 사용자 이름을 받음
   useEffect(() => {
-    handleUserList(); // user list
-  }, []); // 빈 배열을 전달하여 컴포넌트가 마운트될 때만 실행되도록 함
+    handleUserList();
+  }, []);
 
-  // 로그아웃
   const handleLogout = async (e) => {
     e.preventDefault();
     const response = await fetch("http://localhost:5000/logout", {
@@ -41,7 +38,7 @@ export default function Guest() {
       alert(data.message);
 
       if (data.redirect_url) {
-        window.location.href = data.redirect_url; // 클라이언트 사이드에서 리디렉션 처리
+        window.location.href = data.redirect_url;
       }
     }
   };
