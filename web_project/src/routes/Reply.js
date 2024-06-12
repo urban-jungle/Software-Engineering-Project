@@ -6,14 +6,13 @@ import "../styles/reply.css";
 export default function Reply() {
   const [sender, setSender] = useState("");
   const [receiver, setReceiver] = useState("");
-  const [text, setText] = useState(""); // 텍스트 입력 상태 추가
+  const [text, setText] = useState("");
 
   const handleTextChange = (e) => {
     setText(e.target.value);
   };
 
   useEffect(() => {
-    // URL에서 쿼리 파라미터 추출
     const queryParams = new URLSearchParams(window.location.search);
     const sender = queryParams.get("sender");
     const receiver = queryParams.get("receiver");
@@ -22,7 +21,6 @@ export default function Reply() {
     setReceiver(receiver);
   }, []);
 
-  // DM 핸들링
   const handleDM = async (e) => {
     e.preventDefault();
 
@@ -37,15 +35,15 @@ export default function Reply() {
         message: text,
       }),
     })
-      .then((response) => response.json()) // 응답 객체를 JSON 형식으로 파싱
+      .then((response) => response.json())
       .then((data) => {
         alert(data.message);
         if (data.redirect_url) {
-          window.location.href = data.redirect_url; // 클라이언트 사이드에서 리디렉션 처리
+          window.location.href = data.redirect_url;
         }
       })
       .catch((error) => {
-        console.error("Error:", error); // 에러 처리
+        console.error("Error:", error);
       });
   };
 
@@ -53,7 +51,7 @@ export default function Reply() {
     <div className="reply-container">
       <div className="reply-display">
         <form onSubmit={handleDM}>
-          <div className="reply-user">DM 보내기</div>
+          <div className="reply-user">Sending DM</div>
           <textarea
             type="text"
             className="reply-reply"
@@ -62,11 +60,11 @@ export default function Reply() {
             onChange={handleTextChange}
           ></textarea>
           <div className="reply-button-container">
-            <button className="reply-button">보내기</button>
+            <button className="reply-button">Send</button>
           </div>
         </form>
         <Link to="/DirectMessage">
-          <button className="reply-button">이전으로</button>
+          <button className="reply-button">Go back</button>
         </Link>
       </div>
     </div>
