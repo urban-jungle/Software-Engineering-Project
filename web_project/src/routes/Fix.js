@@ -8,17 +8,15 @@ export default function Fix() {
   const [fixMedia, setFixMedia] = useState(null);
   const [FixKey, setFixKey] = useState(Date.now());
   const [Fixhashtags, setFixHashtags] = useState([""]);
-  const [Fixtext, setFixText] = useState(""); // 텍스트 입력 상태 추가
+  const [Fixtext, setFixText] = useState("");
 
   const [filename, setFilename] = useState("");
   const [id, setID] = useState("");
 
   useEffect(() => {
-    // URL에서 쿼리 파라미터 추출
     const queryParams = new URLSearchParams(window.location.search);
     const filename = queryParams.get("filename");
 
-    // filename 상태 업데이트
     setFilename(filename);
     handleLoadID(filename);
   }, []);
@@ -31,13 +29,13 @@ export default function Fix() {
       },
       body: JSON.stringify({ file: filename }),
     })
-      .then((response) => response.json()) // 응답 객체를 JSON 형식으로 파싱
+      .then((response) => response.json())
       .then((data) => {
         const idValue = data.id.$oid;
         setID(idValue);
       })
       .catch((error) => {
-        console.error("Error:", error); // 에러 처리
+        console.error("Error:", error);
       });
   };
 
@@ -74,15 +72,13 @@ export default function Fix() {
   const handleUpload = async (e) => {
     e.preventDefault();
 
-    // 해시태그 배열에서 빈 문자열을 제거한 후 유효한 해시태그만 남깁니다.
     const validHashtags = Fixhashtags.filter((tag) => tag.trim() !== "");
 
-    // 업로드된 미디어, 텍스트, 해시태그 중 하나라도 없는 경우 경고를 표시합니다.
     if (!fixMedia || Fixtext.trim() === "" || validHashtags.length === 0) {
       alert(
-        "업로드한 사진, 해시태그, 텍스트 중 하나라도 없으면 업로드가 안됩니다."
+        "사진 업로드, 해시태그, 글 작성이 필요합니다,"
       );
-      return; // 함수를 더 이상 진행하지 않고 종료합니다.
+      return;
     }
 
     const formData = new FormData();
@@ -97,16 +93,16 @@ export default function Fix() {
       method: "POST",
       body: formData,
     })
-      .then((response) => response.json()) // 응답 객체를 JSON 형식으로 파싱
+      .then((response) => response.json())
       .then((data) => {
         alert(data.message);
 
         if (data.redirect_url) {
-          window.location.href = data.redirect_url; // 클라이언트 사이드에서 리디렉션 처리
+          window.location.href = data.redirect_url;
         }
       })
       .catch((error) => {
-        console.error("Error:", error); // 에러 처리
+        console.error("Error:", error);
       });
   };
 
@@ -134,7 +130,7 @@ export default function Fix() {
                 onClick={onDeleteMedia}
                 className="delete-button"
               >
-                삭제
+                Delete
               </button>
             </div>
           )}
@@ -157,14 +153,14 @@ export default function Fix() {
               onClick={addHashtagField}
               className="hashtag-button"
             >
-              추가
+              Insert
             </button>
             <button
               type="button"
               onClick={removeLastHashtagField}
               className="hashtag-button"
             >
-              마지막 hashtag 삭제
+              Delete Hashtag
             </button>
           </div>
           <textarea
@@ -174,11 +170,11 @@ export default function Fix() {
             value={Fixtext}
             onChange={handleTextChange}
           />
-          <button className="upload-button">업로드</button>
+          <button className="upload-button">Upload</button>
         </form>
 
         <Link to="/main">
-          <button className="upload-button">취소</button>
+          <button className="upload-button">Cancel</button>
         </Link>
       </div>
     </div>
