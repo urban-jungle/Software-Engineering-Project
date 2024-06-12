@@ -6,8 +6,8 @@ import LoginModal from "../component/LoginModal";
 import SignUpModal from "../component/SignUpModal";
 import googlestore from "../icons/Google Play.png";
 import appstore from "../icons/App Store.png";
-import newImageLeft from "../icons/newImageLeft.png"; // 새로운 이미지 경로로 업데이트
-import newImageRight from "../icons/newImageRight.png"; // 새로운 이미지 경로로 업데이트
+import newImageLeft from "../icons/newImageLeft.png";
+import newImageRight from "../icons/newImageRight.png";
 
 export default function Login() {
   const [isIDOpen, setIDOpen] = useState(false);
