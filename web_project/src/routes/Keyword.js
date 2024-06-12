@@ -8,10 +8,9 @@ import OptionModal from "../component/OptionModal";
 
 export default function Keyword() {
   const [keyword, setSearch] = useState("");
-  const [postuser, setPostuser] = useState([]); // 포스트 데이터 상태를 빈 배열로 초기화
-  const [showOption, setShowOption] = useState({}); // 각 포스트별 showOption 상태 관리를 위한 객체
+  const [postuser, setPostuser] = useState([]);
+  const [showOption, setShowOption] = useState({});
 
-  // 버튼 클릭 시 메뉴 표시 상태를 토글하는 함수
   const toggleOption = (index) => {
     setShowOption((prevState) => ({
       ...prevState,
@@ -19,7 +18,6 @@ export default function Keyword() {
     }));
   };
 
-  // PostList 핸들링
   const handlePostList = async (keyword) => {
     try {
       const response = await fetch("http://localhost:5000/search", {
@@ -31,7 +29,7 @@ export default function Keyword() {
       });
       if (response.ok) {
         const post_data = await response.json();
-        setPostuser(post_data.postlist || []); // 서버로부터 data를 받아오고, postlist가 undefined일 경우 빈 배열로 설정
+        setPostuser(post_data.postlist || []);
       } else {
         console.error("Failed to fetch post:", response.statusText);
       }
@@ -40,23 +38,22 @@ export default function Keyword() {
     }
   };
 
-  // 사용자 이름을 받음
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
     const keyword = queryParams.get("keyword");
 
-    setSearch(keyword); // keyword 값 갱신
+    setSearch(keyword);
     handlePostList(keyword);
-  }, []); // 빈 배열을 전달하여 컴포넌트가 마운트될 때만 실행되도록 함
+  }, []); 
 
   return (
     <div className="key-container">
       <div className="key-display">
-        <div className="key-post">검색결과</div>
+        <div className="key-post">Result</div>
         <Link to="/main">
-          <button className="goto-main-button">메뉴로 돌아가기</button>
+          <button className="goto-main-button">Menu</button>
         </Link>
-        {postuser.length > 0 ? ( // postuser 배열이 비어 있지 않을 경우에만 map 함수 호출
+        {postuser.length > 0 ? (
           postuser.map((post, index) => (
             <React.Fragment key={index}>
               <div className="key-board-container">
@@ -104,7 +101,7 @@ export default function Keyword() {
             </React.Fragment>
           ))
         ) : (
-          <div>No results found</div> // 검색 결과가 없을 때 표시
+          <div>No results found</div>
         )}
       </div>
     </div>
