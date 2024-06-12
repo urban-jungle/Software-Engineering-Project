@@ -13,10 +13,9 @@ export default function Main() {
   const [keyword, setSearch] = useState("");
   const [username, setUsername] = useState("");
 
-  const [postuser, setPostuser] = useState([]); // 포스트 데이터 상태
-  const [showOption, setShowOption] = useState({}); // 각 포스트별 showOption 상태 관리를 위한 객체
+  const [postuser, setPostuser] = useState([]);
+  const [showOption, setShowOption] = useState({});
 
-  // 버튼 클릭 시 메뉴 표시 상태를 토글하는 함수
   const toggleOption = (index) => {
     setShowOption((prevState) => ({
       ...prevState,
@@ -30,7 +29,6 @@ export default function Main() {
 
   const [userlist, setUserList] = useState([]);
 
-  // UserList 핸들링
   const handleUserList = async () => {
     try {
       const response = await fetch("http://localhost:5000/userlists", {
@@ -38,7 +36,7 @@ export default function Main() {
       });
       if (response.ok) {
         const data = await response.json();
-        setUserList(data.userlist); // 서버로부터 data를 받아옴
+        setUserList(data.userlist);
       } else {
         console.error("Failed to fetch user:", response.statusText);
       }
@@ -47,7 +45,6 @@ export default function Main() {
     }
   };
 
-  // PostList 핸들링
   const handlePostList = async () => {
     try {
       const response = await fetch("http://localhost:5000/postlists", {
@@ -57,9 +54,8 @@ export default function Main() {
         const data = await response.json();
         if (data.redirect_url) {
           console.log(data.message);
-          // window.location.href = data.redirect_url; // 클라이언트 사이드에서 리디렉션 처리
         }
-        setPostuser(data.postlist); // 서버로부터 data를 받아옴
+        setPostuser(data.postlist);
       } else {
         console.error("Failed to fetch post:", response.statusText);
       }
@@ -68,7 +64,6 @@ export default function Main() {
     }
   };
 
-  // 사용자 이름을 받음
   useEffect(() => {
     const handleUser = async () => {
       try {
@@ -77,7 +72,6 @@ export default function Main() {
         });
         if (response.ok) {
           const data = await response.json();
-          // username을 상태에 저장하거나 다른 로직을 실행
           setUsername(data.username);
         } else {
           console.error("Failed to fetch user:", response.statusText);
@@ -87,12 +81,11 @@ export default function Main() {
       }
     };
 
-    handleUser(); // 로그인 된 user가 누구인지
-    handleUserList(); // user list
-    handlePostList(); //  게시글 list
-  }, []); // 빈 배열을 전달하여 컴포넌트가 마운트될 때만 실행되도록 함
+    handleUser();
+    handleUserList();
+    handlePostList();
+  }, []);
 
-  // 로그아웃
   const handleLogout = async (e) => {
     e.preventDefault();
     const response = await fetch("http://localhost:5000/logout", {
@@ -104,12 +97,11 @@ export default function Main() {
       alert(data.message);
 
       if (data.redirect_url) {
-        window.location.href = data.redirect_url; // 클라이언트 사이드에서 리디렉션 처리
+        window.location.href = data.redirect_url;
       }
     }
   };
 
-  // 검색 페이지로 이동
   const handleKeyword = async (e) => {
     e.preventDefault();
 
@@ -120,16 +112,16 @@ export default function Main() {
       },
       body: JSON.stringify({ keyword: keyword }),
     })
-      .then((response) => response.json()) // 응답 객체를 JSON 형식으로 파싱
+      .then((response) => response.json())
       .then((data) => {
         alert(data.message);
 
         if (data.redirect_url) {
-          window.location.href = data.redirect_url; // 클라이언트 사이드에서 리디렉션 처리
+          window.location.href = data.redirect_url;
         }
       })
       .catch((error) => {
-        console.error("Error:", error); // 에러 처리
+        console.error("Error:", error);
       });
   };
 
