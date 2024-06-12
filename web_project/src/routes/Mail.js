@@ -15,19 +15,18 @@ export default function Mail() {
     const response = await fetch("http://localhost:5000/dm", {
       method: "GET",
     })
-      .then((response) => response.json()) // 응답 객체를 JSON 형식으로 파싱
+      .then((response) => response.json())
       .then((data) => {
         setDmList(data.dm_list);
         if (data.redirect_url) {
-          window.location.href = data.redirect_url; // 클라이언트 사이드에서 리디렉션 처리
+          window.location.href = data.redirect_url;
         }
       })
       .catch((error) => {
-        console.error("Error:", error); // 에러 처리
+        console.error("Error:", error);
       });
   };
 
-  // DM 삭제 핸들링
   const handleDMDelete = async (message, sender) => {
     const response = await fetch("http://localhost:5000/delete_dm", {
       method: "POST",
@@ -39,19 +38,18 @@ export default function Mail() {
         username: sender,
       }),
     })
-      .then((response) => response.json()) // 응답 객체를 JSON 형식으로 파싱
+      .then((response) => response.json())
       .then((data) => {
         alert(data.message);
         if (data.redirect_url) {
-          window.location.href = data.redirect_url; // 클라이언트 사이드에서 리디렉션 처리
+          window.location.href = data.redirect_url;
         }
       })
       .catch((error) => {
-        console.error("Error:", error); // 에러 처리
+        console.error("Error:", error);
       });
   };
 
-  // DM 답장 핸들링
   const handleDMReply = async (sender) => {
     const response = await fetch("http://localhost:5000/gotoDMpage", {
       method: "POST",
@@ -60,15 +58,15 @@ export default function Mail() {
       },
       body: JSON.stringify({ username: sender }),
     })
-      .then((response) => response.json()) // 응답 객체를 JSON 형식으로 파싱
+      .then((response) => response.json())
       .then((data) => {
         alert(data.message);
         if (data.redirect_url) {
-          window.location.href = data.redirect_url; // 클라이언트 사이드에서 리디렉션 처리
+          window.location.href = data.redirect_url;
         }
       })
       .catch((error) => {
-        console.error("Error:", error); // 에러 처리
+        console.error("Error:", error);
       });
   };
 
@@ -80,24 +78,24 @@ export default function Mail() {
           <React.Fragment key={index}>
             <div className="DM-user-content">
               {dm.message}
-              <br></br>- from"{dm.sender}"
+              <br></br>- "{dm.sender}"님이 보냄
               <button
                 className="DM-button"
                 onClick={() => handleDMReply(dm.sender)}
               >
-                reply
+                Reply
               </button>
               <button
                 className="DM-button"
                 onClick={() => handleDMDelete(dm.message, dm.sender)}
               >
-                delete
+                Delete
               </button>
             </div>
           </React.Fragment>
         ))}
         <Link to="/main">
-          <button className="DM-button">뒤로가기</button>
+          <button className="DM-button">Home</button>
         </Link>
       </div>
     </div>
