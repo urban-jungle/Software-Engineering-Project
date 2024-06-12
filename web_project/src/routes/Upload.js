@@ -8,7 +8,7 @@ export default function Upload() {
   const [uploadedMedia, setUploadedMedia] = useState(null);
   const [inputKey, setInputKey] = useState(Date.now());
   const [hashtags, setHashtags] = useState([""]);
-  const [text, setText] = useState(""); // 텍스트 입력 상태 추가
+  const [text, setText] = useState("");
 
   const onChangeMedia = (e) => {
     const file = e.target.files[0];
@@ -43,15 +43,13 @@ export default function Upload() {
   const handleUpload = async (e) => {
     e.preventDefault();
 
-    // 해시태그 배열에서 빈 문자열을 제거한 후 유효한 해시태그만 남깁니다.
     const validHashtags = hashtags.filter((tag) => tag.trim() !== "");
 
-    // 업로드된 미디어, 텍스트, 해시태그 중 하나라도 없는 경우 경고를 표시합니다.
     if (!uploadedMedia || text.trim() === "" || validHashtags.length === 0) {
       alert(
-        "업로드한 사진, 해시태그, 텍스트 중 하나라도 없으면 업로드가 안됩니다."
+        "사진 업로드, 해시태그 추가, 글 작성을 완료해야합니다."
       );
-      return; // 함수를 더 이상 진행하지 않고 종료합니다.
+      return;
     }
 
     const formData = new FormData();
@@ -65,16 +63,16 @@ export default function Upload() {
       method: "POST",
       body: formData,
     })
-      .then((response) => response.json()) // 응답 객체를 JSON 형식으로 파싱
+      .then((response) => response.json())
       .then((data) => {
         alert(data.message);
 
         if (data.redirect_url) {
-          window.location.href = data.redirect_url; // 클라이언트 사이드에서 리디렉션 처리
+          window.location.href = data.redirect_url;
         }
       })
       .catch((error) => {
-        console.error("Error:", error); // 에러 처리
+        console.error("Error:", error);
       });
   };
 
@@ -102,7 +100,7 @@ export default function Upload() {
                 onClick={onDeleteMedia}
                 className="delete-button"
               >
-                삭제
+                Delete
               </button>
             </div>
           )}
@@ -125,14 +123,14 @@ export default function Upload() {
               onClick={addHashtagField}
               className="hashtag-button"
             >
-              태그 추가
+              Create Hashtag
             </button>
             <button
               type="button"
               onClick={removeLastHashtagField}
               className="hashtag-button"
             >
-              태그 삭제
+              Delete Hashtag
             </button>
           </div>
           <textarea
@@ -142,11 +140,11 @@ export default function Upload() {
             value={text}
             onChange={handleTextChange}
           />
-          <button className="upload-button">게시</button>
+          <button className="upload-button">Upload</button>
         </form>
 
         <Link to="/main">
-          <button className="upload-button">돌아가기</button>
+          <button className="upload-button">Go back</button>
         </Link>
       </div>
     </div>
