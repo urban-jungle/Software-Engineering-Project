@@ -28,7 +28,7 @@
 ## 🎯 목적 
 
  > SNS와 같이 게시물을 업로드하고 사용자 간에 서로 메시지를 주고 받을 수 있는 웹 시스템을 구현하고 배포한다.
- > Using Python/HYML/JavaScript/CSS/React/Flask/MongoDB
+ > Using Python/HTML/JavaScript/CSS/React/Flask/MongoDB
 
 
 
