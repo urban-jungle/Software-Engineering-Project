@@ -16,7 +16,7 @@
 
 | 개발내용        | 내용                            | 개발팀원 |
 |-------------|-------------------------------|-----|
-| Python, HTML, JS, CSS, Flask, React   | 전체적인 기능, CSS 디자인         | 이정민 |
+| Python, HTML, JS, CSS, Flask, React, MongoDB   | 전체적인 기능, CSS 디자인         | 이정민 |
 | 배포 및 수정     | remote main using git bash | 이정민 |
 | 시연 영상 제작     | uploaded on Youtube | 조윤수 |
 | Requirement 문서 작성    | functional requirement, etc.. | 이정민, 조윤수 |
